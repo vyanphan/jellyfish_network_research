@@ -1,0 +1,10 @@
+3_2 iperf -s &
+6_2 iperf -c 3_2 -t 60 >> results/ecmp_8_single_output.txt &
+4_2 iperf -s &
+1_2 iperf -c 4_2 -t 60 >> results/ecmp_8_single_output.txt &
+7_2 iperf -s &
+5_2 iperf -c 7_2 -t 60 >> results/ecmp_8_single_output.txt &
+0_2 iperf -s &
+8_2 iperf -c 0_2 -t 60 >> results/ecmp_8_single_output.txt &
+2_2 iperf -s &
+9_2 iperf -c 2_2 -t 60 >> results/ecmp_8_single_output.txt &

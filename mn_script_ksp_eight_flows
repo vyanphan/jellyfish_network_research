@@ -1,0 +1,10 @@
+9_2 iperf -s &
+6_2 iperf -c 9_2 -t 60 -P 8 >> results/ksp_eight_output.txt &
+5_2 iperf -s &
+2_2 iperf -c 5_2 -t 60 -P 8 >> results/ksp_eight_output.txt &
+4_2 iperf -s &
+0_2 iperf -c 4_2 -t 60 -P 8 >> results/ksp_eight_output.txt &
+3_2 iperf -s &
+8_2 iperf -c 3_2 -t 60 -P 8 >> results/ksp_eight_output.txt &
+7_2 iperf -s &
+1_2 iperf -c 7_2 -t 60 -P 8 >> results/ksp_eight_output.txt &
