@@ -154,13 +154,50 @@ def clustered_miswire(n,d,m):
         neighbors_list = []
         for n in neighbors_iter:
             neighbors_list += [n]
+        # pick a random node from list of neighbors
         miswire = neighbors_list[random.randint(0, len(neighbors_list))]
         neighbors_list.remove(miswire)
+        # pick another random node form list without miswire node
         rewire = neighbors_list[random.randint(0, len(neighbors_list))]
         graph.remove_edge(source, miswire)
-        graph.add(source,rewire)
+        graph.add_edge(source,rewire)
 
 # local miswirings
+# r = size of local subgraph
+# m = number of miswirings -> as a function of r/relative to r)
+def local_miswire(n,d,r,m):
+    graph = networkx.random_regular_graph(d, n)
+    range_start = random.randint(0, n)
+    node_list = list(G.nodes)
+    local_list = []
+    # if the endpoiint of the range is larger than the length of the list
+    if range_start + r >= len(node_list):
+        # break into two pieces and combine to form the complete subgraph
+        local_list = node_list[range_start:len(node_list)]
+        local_list += node_list[0:(range_start + r) - len(node_list)]
+    # normal within bounds range
+    else:
+        local_list = node_list[range_start:(range_start + m)]
+    local_graph = graph.subgraph(local_list)
+    size_local = len(local_list)
+
+    #copy pasta from global miswirings
+    for i in range(0,m):
+        source = 0
+        destination = 0
+        while source != destination:
+            source = random.randint(0, size_local)
+            destination = random.randint(0, size_local)
+        local_graph.remove_edge(source, destination)
+    for i in range(0,m):
+        source = 0
+        destination = 0
+        while source != destination:
+            source = random.randint(0, size_local)
+            destination = random.randint(0, size_local)
+        local_graph.add_edge(source, destination)
+    return local_graph
+
 
 
 def main():
