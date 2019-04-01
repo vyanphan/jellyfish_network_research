@@ -124,6 +124,45 @@ def random_derangement(n):
             if v[0] != 0:
                 return tuple(v)
 
+# global miswirings
+#m = number of miswirings
+def global_miswire(n,d,m):
+    graph = networkx.random_regular_graph(d, n)
+    for i in range(0,m):
+        source = 0
+        destination = 0
+        while source != destination:
+            source = random.randint(0, n)
+            destination = random.randint(0, n)
+        graph.remove_edge(source, destination)
+    for i in range(0,m):
+        source = 0
+        destination = 0
+        while source != destination:
+            source = random.randint(0, n)
+            destination = random.randint(0, n)
+        graph.add_edge(source, destination)
+    return graph
+
+#cluster miswirings
+#m = # of miswirings
+def clustered_miswire(n,d,m):
+    graph = networkx.random_regular_graph(d, n)
+    for i in range(0,m):
+        source = random.randint(0, n)
+        neighbors_iter = networkx.all_neighbors(graph,source)
+        neighbors_list = []
+        for n in neighbors_iter:
+            neighbors_list += [n]
+        miswire = neighbors_list[random.randint(0, len(neighbors_list))]
+        neighbors_list.remove(miswire)
+        rewire = neighbors_list[random.randint(0, len(neighbors_list))]
+        graph.remove_edge(source, miswire)
+        graph.add(source,rewire)
+
+# local miswirings
+
+
 def main():
     n = 10
     numHosts = 3*n
