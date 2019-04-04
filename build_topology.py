@@ -169,7 +169,7 @@ def clustered_miswire(n,d,m):
         graph.add_edge(source,rewire)
     return graph
 
-# local miswirings
+# local miswiring
 # r = size of local subgraph
 # m = percent of miswirings -> as a function of r/relative to r)
 def local_miswire(n,d,r,m):
@@ -179,7 +179,7 @@ def local_miswire(n,d,r,m):
     # convert percent into int
     m = math.floor(r*m)
     local_list = []
-    # if the endpoiint of the range is larger than the length of the list
+    # if the endpoint of the range is larger than the length of the list
     if range_start + r >= len(node_list):
         # break into two pieces and combine to form the complete subgraph
         local_list = node_list[range_start:len(node_list)]
@@ -231,8 +231,7 @@ def main():
         elif type.compare("cluster") == 0:
             graph = clustered_miswire(n, d, m)
         else:
-            print("invalid type")
-            return
+            graph = networkx.random_regular_graph(d, n)
         networkx.write_adjlist(graph, file_name)
         graph = networkx.read_adjlist(file_name)
 
