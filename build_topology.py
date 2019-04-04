@@ -126,6 +126,12 @@ def random_derangement(n):
             if v[0] != 0:
                 return tuple(v)
 
+
+def generate_jellyfish(n, d):
+    graph = network.random_regular_graph(d,n)
+    # make sure it's connected
+
+
 # global miswirings
 #m = percent of miswirings
 def global_miswire(n,d,m):
@@ -214,12 +220,14 @@ def main():
     numHosts = 3*n
     d = sys.argv[2]
     type = sys.argv[3]
+    
     # percent miswirings in decimal form
     m = sys.argv[4]
     reuse_old_result = False
     ecmp_paths = {}
     all_ksp = {}
     file_name = "rrg_%s_%s" % (d, n)
+
     if not reuse_old_result:
         graph = networkx.empty_graph()
         if type.compare("local") == 0:
