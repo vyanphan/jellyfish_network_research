@@ -3,6 +3,8 @@ import sys
 import networkx
 import matplotlib as mpl
 import random
+import sys
+import math
 mpl.use('Agg')
 import matplotlib.pyplot as plt
 import pickle
@@ -125,9 +127,11 @@ def random_derangement(n):
                 return tuple(v)
 
 # global miswirings
-#m = number of miswirings
+#m = percent of miswirings
 def global_miswire(n,d,m):
     graph = networkx.random_regular_graph(d, n)
+    # convert to int
+    m = math.floor(n*m)
     for i in range(0,m):
         source = 0
         destination = 0
@@ -145,9 +149,11 @@ def global_miswire(n,d,m):
     return graph
 
 #cluster miswirings
-#m = # of miswirings
+#m = percent of miswirings
 def clustered_miswire(n,d,m):
     graph = networkx.random_regular_graph(d, n)
+    # convert to int
+    m = math.floor(n*m)
     for i in range(0,m):
         source = random.randint(0, n)
         neighbors_iter = networkx.all_neighbors(graph,source)
@@ -161,16 +167,19 @@ def clustered_miswire(n,d,m):
         rewire = neighbors_list[random.randint(0, len(neighbors_list))]
         graph.remove_edge(source, miswire)
         graph.add_edge(source,rewire)
+    return graph
 
-# local miswirings
+# local miswiring
 # r = size of local subgraph
-# m = number of miswirings -> as a function of r/relative to r)
+# m = percent of miswirings -> as a function of r/relative to r)
 def local_miswire(n,d,r,m):
     graph = networkx.random_regular_graph(d, n)
     range_start = random.randint(0, n)
     node_list = list(G.nodes)
+    # convert percent into int
+    m = math.floor(r*m)
     local_list = []
-    # if the endpoiint of the range is larger than the length of the list
+    # if the endpoint of the range is larger than the length of the list
     if range_start + r >= len(node_list):
         # break into two pieces and combine to form the complete subgraph
         local_list = node_list[range_start:len(node_list)]
@@ -198,18 +207,31 @@ def local_miswire(n,d,r,m):
         local_graph.add_edge(source, destination)
     return local_graph
 
-
+# script ex -> build_topology.py n(int) d(int) type(string) m (float ~ decimal)
 
 def main():
-    n = 10
+    n = sys.argv[1]
     numHosts = 3*n
-    d = 3
+    d = sys.argv[2]
+    type = sys.argv[3]
+    # percent miswirings in decimal form
+    m = sys.argv[4]
     reuse_old_result = False
     ecmp_paths = {}
     all_ksp = {}
     file_name = "rrg_%s_%s" % (d, n)
     if not reuse_old_result:
-        graph = networkx.random_regular_graph(d, n)
+        graph = networkx.empty_graph()
+        if type.compare("local") == 0:
+            # constant ~ possible number of miswirings in a local setting
+            size_subgraph = 10
+            graph = local_miswire(n, d, size_subgraph, m)
+        elif type.compare("global") == 0:
+            graph = global_miswire(n, d, m)
+        elif type.compare("cluster") == 0:
+            graph = clustered_miswire(n, d, m)
+        else:
+            graph = networkx.random_regular_graph(d, n)
         networkx.write_adjlist(graph, file_name)
         graph = networkx.read_adjlist(file_name)
 
