@@ -1,5 +1,7 @@
 import os
 import sys
+from typing import List, Any
+
 import networkx
 import matplotlib as mpl
 import random
@@ -130,55 +132,56 @@ def random_derangement(n):
 #m = percent of miswirings
 def global_miswire(n,d,m):
     graph = networkx.random_regular_graph(d, n)
+    edges = graph.edges()
     # convert to int
-    m = math.floor(n*m)
+    m = math.floor(len(edges)*m)
     for i in range(0,m):
+        # pick random edge and remove it
+        random_edge = edges[random.randint(0, len(edges))]
+        source = random_edge[0]
+        dest = random_edge[1]
+        graph.remove_edge(source, dest)
+    for i in range(0,m):
+        # randomly add an edge to the graph
         source = 0
         destination = 0
-        while source != destination:
-            source = random.randint(0, n)
-            destination = random.randint(0, n)
-        graph.remove_edge(source, destination)
-    for i in range(0,m):
-        source = 0
-        destination = 0
-        while source != destination:
+        while source == destination:
             source = random.randint(0, n)
             destination = random.randint(0, n)
         graph.add_edge(source, destination)
     return graph
 
-#cluster miswirings
-#m = percent of miswirings
-def clustered_miswire(n,d,m):
+# local miswirings
+# m = percent of miswirings
+def local_miswire(n,d,m):
     graph = networkx.random_regular_graph(d, n)
+    edges = graph.edges()
     # convert to int
-    m = math.floor(n*m)
+    m = math.floor(len(edges)*m)
     for i in range(0,m):
-        source = random.randint(0, n)
-        neighbors_iter = networkx.all_neighbors(graph,source)
+        # pick a random edge in graph
+        random_edge = edges[random.randint(0, len(edges))]
+        source = random_edge[0]
+        dest = random_edge[1]
+        # Get iterator of neighbors of destination node
+        neighbors_iter = networkx.all_neighbors(graph, dest)
         neighbors_list = []
         for n in neighbors_iter:
             neighbors_list += [n]
-        # pick a random node from list of neighbors
-        miswire = neighbors_list[random.randint(0, len(neighbors_list))]
-        neighbors_list.remove(miswire)
-        # pick another random node form list without miswire node
+        # pick random node from neighbor list as miswired node
         rewire = neighbors_list[random.randint(0, len(neighbors_list))]
-        graph.remove_edge(source, miswire)
+        graph.remove_edge(source, dest)
         graph.add_edge(source,rewire)
     return graph
 
-# local miswiring
+# cluster miswiring
 # r = size of local subgraph
 # m = percent of miswirings -> as a function of r/relative to r)
-def local_miswire(n,d,r,m):
+def clustered_global_miswire(n,d,r,m):
     graph = networkx.random_regular_graph(d, n)
+    edges = graph.edges()
     range_start = random.randint(0, n)
     node_list = list(G.nodes)
-    # convert percent into int
-    m = math.floor(r*m)
-    local_list = []
     # if the endpoint of the range is larger than the length of the list
     if range_start + r >= len(node_list):
         # break into two pieces and combine to form the complete subgraph
@@ -186,26 +189,67 @@ def local_miswire(n,d,r,m):
         local_list += node_list[0:(range_start + r) - len(node_list)]
     # normal within bounds range
     else:
-        local_list = node_list[range_start:(range_start + m)]
-    local_graph = graph.subgraph(local_list)
-    size_local = len(local_list)
-
+        # try to get range of nodes from G that is from range start -> range start + r
+        local_list = node_list[range_start:(range_start + r)]
+    # convert percent into int
+    m = math.floor(len(edges)* m)
     #copy pasta from global miswirings
     for i in range(0,m):
-        source = 0
-        destination = 0
-        while source != destination:
-            source = random.randint(0, size_local)
-            destination = random.randint(0, size_local)
-        local_graph.remove_edge(source, destination)
+        source = -1
+        dest = -1
+        # finds a random edge that contains a node in the local list
+        while source not in local_list and dest not in local_list:
+            random_edge = edges[random.randint(0, len(edges))]
+            source = random_edge[0]
+            dest = random_edge[1]
+        graph.remove_edge(source, dest)
     for i in range(0,m):
-        source = 0
+        # random node from local list/ cluster
+        source = local_list[random.randint(0, len(local_list))]
         destination = 0
-        while source != destination:
+        while source == destination:
             source = random.randint(0, size_local)
             destination = random.randint(0, size_local)
-        local_graph.add_edge(source, destination)
-    return local_graph
+        graph.add_edge(source, destination)
+    return graph
+
+# cluster miswiring
+# r = size of local subgraph
+# m = percent of miswirings -> as a function of r/relative to r)
+def clustered_local_miswire(n,d,r,m):
+    graph = networkx.random_regular_graph(d, n)
+    edges = graph.edges()
+    range_start = random.randint(0, n)
+    node_list = list(G.nodes)
+    # if the endpoint of the range is larger than the length of the list
+    if range_start + r >= len(node_list):
+        # break into two pieces and combine to form the complete subgraph
+        local_list = node_list[range_start:len(node_list)]
+        local_list += node_list[0:(range_start + r) - len(node_list)]
+    # normal within bounds range
+    else:
+        # try to get range of nodes from G that is from range start -> range start + r
+        local_list = node_list[range_start:(range_start + r)]
+    # convert percent into int
+    m = math.floor(len(edges)* m)
+    #copy pasta from local miswirings
+    for i in range(0,m):
+        source = -1
+        dest = -1
+        # finds a random edge that contains a node in the local list
+        while source not in local_list and dest not in local_list:
+            random_edge = edges[random.randint(0, len(edges))]
+            source = random_edge[0]
+            dest = random_edge[1]
+        neighbors_iter = networkx.all_neighbors(graph, dest)
+        neighbors_list = []
+        for n in neighbors_iter:
+            neighbors_list += [n]
+        # pick random node from neighbor list as miswired node
+        rewire = neighbors_list[random.randint(0, len(neighbors_list))]
+        graph.remove_edge(source, dest)
+        graph.add_edge(source, rewire)
+    return graph
 
 # script ex -> build_topology.py n(int) d(int) type(string) m (float ~ decimal)
 
@@ -220,25 +264,26 @@ def main():
     ecmp_paths = {}
     all_ksp = {}
     file_name = "rrg_%s_%s" % (d, n)
+    # constant ~ possible number of miswirings in a local setting
+    size_subgraph = 10
     if not reuse_old_result:
-        graph = networkx.empty_graph()
         if type.compare("local") == 0:
-            # constant ~ possible number of miswirings in a local setting
-            size_subgraph = 10
             graph = local_miswire(n, d, size_subgraph, m)
         elif type.compare("global") == 0:
             graph = global_miswire(n, d, m)
-        elif type.compare("cluster") == 0:
-            graph = clustered_miswire(n, d, m)
+        elif type.compare("cluster global") == 0:
+            graph = clustered_global_miswire(n, d, m)
+        elif type.compare("cluster local") == 0:
+            graph = clustered_local_miswire(n, d, m)
         else:
             graph = networkx.random_regular_graph(d, n)
         networkx.write_adjlist(graph, file_name)
         graph = networkx.read_adjlist(file_name)
 
-        print "Computing ECMP paths"
+        print("Computing ECMP paths")
         ecmp_paths = compute_ecmp_paths(graph, n)
         save_obj(ecmp_paths, "ecmp_%s" % (file_name))
-        print "Computing K shortest paths"
+        print("Computing K shortest paths")
         all_ksp = compute_k_shortest_paths(graph, n)
         save_obj(all_ksp, "ksp_%s" % (file_name))
     else:
@@ -246,7 +291,7 @@ def main():
 
         ecmp_paths = load_obj("ecmp_%s" % (file_name))
         all_ksp = load_obj("ksp_%s" % (file_name))
-    print "Assembling counts from paths"
+    print("Assembling counts from paths")
 
     derangement = random_derangement(numHosts)
     all_links = graph.edges()
