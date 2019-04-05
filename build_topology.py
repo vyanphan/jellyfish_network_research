@@ -148,14 +148,6 @@ def global_miswire(n,d,m):
     # convert to int
     m = math.floor(len(edges)*m)
     for i in range(0,m):
-        source = 0
-        destination = 0
-
-        ### QUESTION: shouldn't this be source == destination? see line 135
-        while source != destination:
-            source = random.randint(0, n)
-            destination = random.randint(0, n)
-        graph.remove_edge(source, destination)
 
         # pick random edge and remove it
         random_edge = edges[random.randint(0, len(edges))]
