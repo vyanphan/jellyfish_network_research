@@ -128,7 +128,13 @@ def random_derangement(n):
 
 
 def generate_jellyfish(n, d):
-    graph = network.random_regular_graph(d,n)
+    graph = networkx.empty_graph(d,n)
+    while not networkx.is_connected(graph):
+        src = random.randint(0,n)
+        dst = random.randint(0,n)
+        while dst == src or graph.has_edge(src,dst):
+            dst = random.randint(0,n)
+        graph.add_edge(src,dst)
     # make sure it's connected
 
 
@@ -141,6 +147,8 @@ def global_miswire(n,d,m):
     for i in range(0,m):
         source = 0
         destination = 0
+
+        ### QUESTION: shouldn't this be source == destination? see line 135
         while source != destination:
             source = random.randint(0, n)
             destination = random.randint(0, n)
