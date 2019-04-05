@@ -162,7 +162,7 @@ def global_miswire(n,d,m):
         source = random_edge[0]
         dest = random_edge[1]
         graph.remove_edge(source, dest)
->>>>>>> 11b36de6969d04ff31747b605e897d0e345fa139
+
     for i in range(0,m):
         # randomly add an edge to the graph
         source = 0
