@@ -284,19 +284,23 @@ def main():
     reuse_old_result = False
     ecmp_paths = {}
     all_ksp = {}
-    file_name = "rrg_%s_%s" % (d, n)
+    file_name = "rrg_%s_%s_" % (d, n)
 
     # constant ~ possible number of miswirings in a local setting
     size_subgraph = 10
     if not reuse_old_result:
         if type == "local":
             graph = local_miswire(n, d, m)
+            file_name += "local"
         elif type == "global":
             graph = global_miswire(n, d, m)
+            file_name += "global"
         elif type == "cluster global":
             graph = clustered_global_miswire(n, d, size_subgraph, m)
+            file_name += "cluster global"
         elif type == "cluster local":
             graph = clustered_local_miswire(n, d, size_subgraph, m)
+            file_name += "cluster local"
         else:
             graph = generate_jellyfish(n,d)
         networkx.write_adjlist(graph, file_name)
