@@ -286,13 +286,13 @@ def main():
     size_subgraph = 10
     if not reuse_old_result:
         if type == "local":
-            graph = local_miswire(n, d, size_subgraph, m)
+            graph = local_miswire(n, d, m)
         elif type == "global":
             graph = global_miswire(n, d, m)
         elif type == "cluster global":
-            graph = clustered_global_miswire(n, d, m)
+            graph = clustered_global_miswire(n, d, size_subgraph, m)
         elif type == "cluster local":
-            graph = clustered_local_miswire(n, d, m)
+            graph = clustered_local_miswire(n, d, size_subgraph, m)
         else:
             graph = generate_jellyfish(n,d)
         networkx.write_adjlist(graph, file_name)
@@ -306,7 +306,6 @@ def main():
         save_obj(all_ksp, "ksp_%s" % (file_name))
     else:
         graph = networkx.read_adjlist(file_name)
-
         ecmp_paths = load_obj("ecmp_%s" % (file_name))
         all_ksp = load_obj("ksp_%s" % (file_name))
     print("Assembling counts from paths")
