@@ -270,13 +270,13 @@ def clustered_local_miswire(n,d,r,m):
 # type - type of miswiring
 
 def main():
-    n = sys.argv[1]
-    numHosts = 3*n
-    d = sys.argv[2]
-    type = sys.argv[3]
+    n = int(sys.argv[1])
+    numHosts = int(3*n)
+    d = int(sys.argv[2])
+    type = str(sys.argv[3])
     
     # percent miswirings in decimal form
-    m = sys.argv[4]
+    m = float(sys.argv[4])
     reuse_old_result = False
     ecmp_paths = {}
     all_ksp = {}
