@@ -130,20 +130,21 @@ def random_derangement(n):
 
 
 def generate_jellyfish(n, d):
-    graph = networkx.empty_graph(d,n)
+    graph = networkx.random_regular_graph(d, n)
     while not networkx.is_connected(graph):
         src = random.randint(0,n)
         dst = random.randint(0,n)
         while dst == src or graph.has_edge(src,dst):
             dst = random.randint(0,n)
         graph.add_edge(src,dst)
+    return graph
     # make sure it's connected
 
 
 # global miswirings
 #m = percent of miswirings
 def global_miswire(n,d,m):
-    graph = networkx.random_regular_graph(d, n)
+    graph = generate_jellyfish(n,d)
     edges = graph.edges()
     # convert to int
     m = math.floor(len(edges)*m)
@@ -168,7 +169,7 @@ def global_miswire(n,d,m):
 # local miswirings
 # m = percent of miswirings
 def local_miswire(n,d,m):
-    graph = networkx.random_regular_graph(d, n)
+    graph = generate_jellyfish(n,d)
     edges = graph.edges()
     # convert to int
     m = math.floor(len(edges)*m)
@@ -192,7 +193,7 @@ def local_miswire(n,d,m):
 # r = size of local subgraph
 # m = percent of miswirings -> as a function of r/relative to r)
 def clustered_global_miswire(n,d,r,m):
-    graph = networkx.random_regular_graph(d, n)
+    graph = generate_jellyfish(n,d)
     edges = graph.edges()
     range_start = random.randint(0, n)
     node_list = list(graph.nodes)
@@ -219,7 +220,7 @@ def clustered_global_miswire(n,d,r,m):
         graph.remove_edge(source, dest)
     for i in range(0,m):
         # random node from local list/ cluster
-        # add an edge going from this node to a random node in G
+        # add an edge going from this node to a random node in Gsource = local_list[random.randint(0, len(local_list))]
         source = local_list[random.randint(0, len(local_list))]
         destination = random.randint(0, len(node_list))
         graph.add_edge(source, destination)
@@ -229,7 +230,7 @@ def clustered_global_miswire(n,d,r,m):
 # r = size of local subgraph
 # m = percent of miswirings -> as a function of r/relative to r)
 def clustered_local_miswire(n,d,r,m):
-    graph = networkx.random_regular_graph(d, n)
+    graph = generate_jellyfish(n,d)
     edges = graph.edges()
     range_start = random.randint(0, n)
     node_list = list(graph.nodes)
@@ -294,7 +295,7 @@ def main():
         elif type.compare("cluster local") == 0:
             graph = clustered_local_miswire(n, d, m)
         else:
-            graph = networkx.random_regular_graph(d, n)
+            graph = generate_jellyfish(n,d)
         networkx.write_adjlist(graph, file_name)
         graph = networkx.read_adjlist(file_name)
 
