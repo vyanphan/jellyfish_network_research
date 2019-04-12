@@ -149,9 +149,9 @@ def global_miswire(n,d,m):
     new_m = int(math.floor(len(edges)*m))
     for i in range(0,new_m):
         edges = [e for e in graph.edges]
-        new_m = int(math.floor(len(edges)*m))
+        # new_m = int(math.floor(len(edges)*m))
         # pick random edge and remove it
-        random_edge = edges[random.randint(0, len(edges))]
+        random_edge = edges[random.randint(0, len(edges)-1)]
         source = random_edge[0]
         dest = random_edge[1]
         graph.remove_edge(source, dest)
@@ -170,23 +170,22 @@ def global_miswire(n,d,m):
 # m = percent of miswirings
 def local_miswire(n,d,m):
     graph = generate_jellyfish(n,d)
-    edges = [e for e in G.edges]
+    edges = [e for e in graph.edges]
     # convert to int
     new_m = int(math.floor(len(edges)*m))
     for i in range(0, new_m):
         # pick a random edge in graph
-        random_edge = edges[random.randint(0, len(edges))]
+        random_edge = edges[random.randint(0, len(edges)-1)]
         source = random_edge[0]
         dest = random_edge[1]
         # Get iterator of neighbors of destination node
-        neighbors_iter = networkx.all_neighbors(graph, dest)
-        neighbors_list = []
-        for n in neighbors_iter:
-            neighbors_list += [n]
-        # pick random node from neighbor list as miswired node
-        rewire = neighbors_list[random.randint(0, len(neighbors_list))]
+        neighbors_list = list(networkx.all_neighbors(graph, dest))
+        x = random.randint(0, len(neighbors_list)-1)
+        rewire = neighbors_list[x]
+
         graph.remove_edge(source, dest)
         graph.add_edge(source,rewire)
+        edges = [e for e in graph.edges]
     return graph
 
 # cluster miswiring
@@ -194,7 +193,7 @@ def local_miswire(n,d,m):
 # m = percent of miswirings -> as a function of r/relative to r)
 def clustered_global_miswire(n,d,r,m):
     graph = generate_jellyfish(n,d)
-    edges = [e for e in G.edges]
+    edges = [e for e in graph.edges]
     range_start = random.randint(0, n)
     node_list = list(graph.nodes)
     # if the endpoint of the range is larger than the length of the list
@@ -214,14 +213,16 @@ def clustered_global_miswire(n,d,r,m):
         dest = -1
         # finds a random edge that contains a node in the local list
         while source not in local_list and dest not in local_list:
-            random_edge = edges[random.randint(0, len(edges))]
+            random_edge = edges[random.randint(0, len(edges)-1)]
             source = random_edge[0]
             dest = random_edge[1]
         graph.remove_edge(source, dest)
-    for i in range(0,m):
+        edges = [e for e in graph.edges]
+
+    for i in range(0,new_m):
         # random node from local list/ cluster
         # add an edge going from this node to a random node in Gsource = local_list[random.randint(0, len(local_list))]
-        source = local_list[random.randint(0, len(local_list))]
+        source = local_list[random.randint(0, len(local_list)-1)]
         destination = random.randint(0, len(node_list))
         graph.add_edge(source, destination)
     return graph
@@ -231,7 +232,7 @@ def clustered_global_miswire(n,d,r,m):
 # m = percent of miswirings -> as a function of r/relative to r)
 def clustered_local_miswire(n,d,r,m):
     graph = generate_jellyfish(n,d)
-    edges = [e for e in G.edges]
+    edges = [e for e in graph.edges]
     range_start = random.randint(0, n)
     node_list = list(graph.nodes)
     # if the endpoint of the range is larger than the length of the list
@@ -251,7 +252,7 @@ def clustered_local_miswire(n,d,r,m):
         dest = -1
         # finds a random edge that contains a node in the local list
         while source not in local_list and dest not in local_list:
-            random_edge = edges[random.randint(0, len(edges))]
+            random_edge = edges[random.randint(0, len(edges)-1)]
             source = random_edge[0]
             dest = random_edge[1]
         neighbors_iter = networkx.all_neighbors(graph, dest)
@@ -259,9 +260,11 @@ def clustered_local_miswire(n,d,r,m):
         for n in neighbors_iter:
             neighbors_list += [n]
         # pick random node from neighbor list as miswired node
-        rewire = neighbors_list[random.randint(0, len(neighbors_list))]
+        rewire = neighbors_list[random.randint(0, len(neighbors_list)-1)]
         graph.remove_edge(source, dest)
         graph.add_edge(source, rewire)
+        edges = [e for e in graph.edges]
+
     return graph
 
 # script ex -> build_topology.py n(int) d(int) type(string) m (float ~ decimal)
