@@ -1,5 +1,5 @@
 # CS 268 Final Project
-## Group: Vy-An Phan and Eric Gaoyy
+## Group: Vy-An Phan and Eric Gao
 
 This repository contains code from Jellyfish: Networking Data Centers Randomly research reproduction assignment by Austin Poore and Tommy Fan.
 
