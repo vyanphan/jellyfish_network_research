@@ -195,7 +195,7 @@ def clustered_global_miswire(n,d,r,m):
     graph = networkx.random_regular_graph(d, n)
     edges = graph.edges()
     range_start = random.randint(0, n)
-    node_list = list(G.nodes)
+    node_list = list(graph.nodes)
     # if the endpoint of the range is larger than the length of the list
     if range_start + r >= len(node_list):
         # break into two pieces and combine to form the complete subgraph
@@ -219,11 +219,9 @@ def clustered_global_miswire(n,d,r,m):
         graph.remove_edge(source, dest)
     for i in range(0,m):
         # random node from local list/ cluster
+        # add an edge going from this node to a random node in G
         source = local_list[random.randint(0, len(local_list))]
-        destination = 0
-        while source == destination:
-            source = random.randint(0, size_local)
-            destination = random.randint(0, size_local)
+        destination = random.randint(0, len(node_list))
         graph.add_edge(source, destination)
     return graph
 
@@ -234,7 +232,7 @@ def clustered_local_miswire(n,d,r,m):
     graph = networkx.random_regular_graph(d, n)
     edges = graph.edges()
     range_start = random.randint(0, n)
-    node_list = list(G.nodes)
+    node_list = list(graph.nodes)
     # if the endpoint of the range is larger than the length of the list
     if range_start + r >= len(node_list):
         # break into two pieces and combine to form the complete subgraph
@@ -266,6 +264,10 @@ def clustered_local_miswire(n,d,r,m):
     return graph
 
 # script ex -> build_topology.py n(int) d(int) type(string) m (float ~ decimal)
+# n - number of nodes
+# d - degree per a node
+# m - percent miswiring of total nodes
+# type - type of miswiring
 
 def main():
     n = sys.argv[1]
