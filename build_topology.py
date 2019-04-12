@@ -144,7 +144,7 @@ def generate_jellyfish(n, d):
 #m = percent of miswirings
 def global_miswire(n,d,m):
     graph = generate_jellyfish(n,d)
-    edges = graph.edges()
+    edges = [e for e in G.edges]
     # convert to int
     new_m = int(math.floor(len(edges)*m))
     for i in range(0,new_m):
@@ -169,7 +169,7 @@ def global_miswire(n,d,m):
 # m = percent of miswirings
 def local_miswire(n,d,m):
     graph = generate_jellyfish(n,d)
-    edges = graph.edges()
+    edges = [e for e in G.edges]
     # convert to int
     new_m = int(math.floor(len(edges)*m))
     for i in range(0, new_m):
@@ -193,7 +193,7 @@ def local_miswire(n,d,m):
 # m = percent of miswirings -> as a function of r/relative to r)
 def clustered_global_miswire(n,d,r,m):
     graph = generate_jellyfish(n,d)
-    edges = graph.edges()
+    edges = [e for e in G.edges]
     range_start = random.randint(0, n)
     node_list = list(graph.nodes)
     # if the endpoint of the range is larger than the length of the list
@@ -230,7 +230,7 @@ def clustered_global_miswire(n,d,r,m):
 # m = percent of miswirings -> as a function of r/relative to r)
 def clustered_local_miswire(n,d,r,m):
     graph = generate_jellyfish(n,d)
-    edges = graph.edges()
+    edges = [e for e in G.edges]
     range_start = random.randint(0, n)
     node_list = list(graph.nodes)
     # if the endpoint of the range is larger than the length of the list
