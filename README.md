@@ -1,7 +1,16 @@
-# CS 244 Assignment 2
-## Group: Austin Poore and Tommy Fan
+# CS 268 Final Project
+## Group: Vy-An Phan and Eric Gaoyy
 
-This repository contains our code to reproduce experiments from Jellyfish: Networking Data Centers Randomly
+This repository contains code from Jellyfish: Networking Data Centers Randomly research reproduction assignment by Austin Poore and Tommy Fan.
+
+## Introduction
+
+[abstract here]
+
+Testing Jellyfish miswiring
+
+Evaluating Jellyfish graph complexity
+
 
 ## Setup
 1. Run `bash setup.sh` to install Ripl and Riplpox
