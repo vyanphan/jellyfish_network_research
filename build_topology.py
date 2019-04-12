@@ -146,7 +146,7 @@ def global_miswire(n,d,m):
     graph = generate_jellyfish(n,d)
     edges = graph.edges()
     # convert to int
-    m = math.floor(len(edges)*m)
+    new_m = int(math.floor(len(edges)*m))
     for i in range(0,m):
 
         # pick random edge and remove it
@@ -155,7 +155,7 @@ def global_miswire(n,d,m):
         dest = random_edge[1]
         graph.remove_edge(source, dest)
 
-    for i in range(0,m):
+    for i in range(0,new_m):
         # randomly add an edge to the graph
         source = 0
         destination = 0
@@ -171,8 +171,8 @@ def local_miswire(n,d,m):
     graph = generate_jellyfish(n,d)
     edges = graph.edges()
     # convert to int
-    m = math.floor(len(edges)*m)
-    for i in range(0,m):
+    new_m = int(math.floor(len(edges)*m))
+    for i in range(0, new_m):
         # pick a random edge in graph
         random_edge = edges[random.randint(0, len(edges))]
         source = random_edge[0]
@@ -206,9 +206,9 @@ def clustered_global_miswire(n,d,r,m):
         # try to get range of nodes from G that is from range start -> range start + r
         local_list = node_list[range_start:(range_start + r)]
     # convert percent into int
-    m = math.floor(len(edges)* m)
+    new_m = int(math.floor(len(edges)* m))
     #copy pasta from global miswirings
-    for i in range(0,m):
+    for i in range(0,new_m):
         source = -1
         dest = -1
         # finds a random edge that contains a node in the local list
@@ -243,9 +243,9 @@ def clustered_local_miswire(n,d,r,m):
         # try to get range of nodes from G that is from range start -> range start + r
         local_list = node_list[range_start:(range_start + r)]
     # convert percent into int
-    m = math.floor(len(edges)* m)
+    new_m = int(math.floor(len(edges)* m))
     #copy pasta from local miswirings
-    for i in range(0,m):
+    for i in range(0,new_m):
         source = -1
         dest = -1
         # finds a random edge that contains a node in the local list
