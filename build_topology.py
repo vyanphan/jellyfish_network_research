@@ -147,7 +147,7 @@ def global_miswire(n,d,m):
     edges = graph.edges()
     # convert to int
     new_m = int(math.floor(len(edges)*m))
-    for i in range(0,m):
+    for i in range(0,new_m):
 
         # pick random edge and remove it
         random_edge = edges[random.randint(0, len(edges))]
