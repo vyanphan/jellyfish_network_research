@@ -285,13 +285,13 @@ def main():
     # constant ~ possible number of miswirings in a local setting
     size_subgraph = 10
     if not reuse_old_result:
-        if type.compare("local") == 0:
+        if type == "local":
             graph = local_miswire(n, d, size_subgraph, m)
-        elif type.compare("global") == 0:
+        elif type == "global":
             graph = global_miswire(n, d, m)
-        elif type.compare("cluster global") == 0:
+        elif type == "cluster global":
             graph = clustered_global_miswire(n, d, m)
-        elif type.compare("cluster local") == 0:
+        elif type == "cluster local":
             graph = clustered_local_miswire(n, d, m)
         else:
             graph = generate_jellyfish(n,d)
