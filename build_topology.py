@@ -1,6 +1,5 @@
 import os
 import sys
-from typing import List, Any
 
 import networkx
 import matplotlib as mpl
