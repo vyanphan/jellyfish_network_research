@@ -144,7 +144,7 @@ def generate_jellyfish(n, d):
 #m = percent of miswirings
 def global_miswire(n,d,m):
     graph = generate_jellyfish(n,d)
-    edges = [e for e in G.edges]
+    edges = [e for e in graph.edges]
     # convert to int
     new_m = int(math.floor(len(edges)*m))
     for i in range(0,new_m):
