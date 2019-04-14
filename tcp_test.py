@@ -20,22 +20,23 @@ from subprocess import Popen, PIPE
 from time import sleep, time
 from ripl.ripl.dctopo import JellyfishTopo
 
+# Script call tcp_test.py name_of_adjust_file number_switches number_ports number_parellel_flows output_file
 def main():
-	nSwitches = 10
-	nPorts = 3
-	adjlist_file = "rrg_3_10"
+	nSwitches = sys.argv[2]
+	nPorts = sys.argv[3]
+	nFlows = sys.argv[4]
+	adjlist_file = sys.argv[1]
 
-	
 	jelly_topo = JellyfishTopo(nSwitches, nPorts, adjlist_file)
 	randomHosts = jelly_topo.hosts()
 	random.shuffle(randomHosts)
 	clients = randomHosts[0::2]
 	servers = randomHosts[1::2]
 	pairs_list = zip(clients, servers)
-	
+	output_file = sys.argv[5]
 	for pair in pairs_list:
 		print pair[1] + " iperf -s &"
-		print pair[0] + " iperf -c %s -P 8 -t 60 >> results/ecmp_8_eight_output.txt &" %(pair[1])
+		print pair[0] + " iperf -c %s -P " + nFlows + " -t 60 >> " + "results/" + output_file + " &" %(pair[1])
 	
 if __name__ == '__main__':
 	main()
