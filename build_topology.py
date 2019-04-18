@@ -307,19 +307,34 @@ def datacenter():
     graph = networkx.Graph()
     start_num = 0
     cores = []
+    ports_p_pod = 20
     while start_num < 1000:
         cores += [make_fattree(graph,start_num)]
         start_num += 3
     # connect the cores using jellyfish
-    while not networkx.is_connected(graph):
+    aval_ports_p_core = [ports_p_pod for i in range(len(cores))]
+    # while there is still more than 1 pod left
+    while not len(aval_ports_p_core) <= 1:
+        # pick random pods
         src_pod = random.randint(0,len(cores))
         dst_pod = random.randint(0,len(cores))
-        src_node = cores[src_pod][random.randint(0, 3)]
-        dst_node = cores[dst_pod][random.randint(0, 3)]
-        while dst_pod == src_pod or graph.has_edge(src_node,dst_node):
-            dst_pod = random.randint(0,len(cores))
-            dst_node = cores[dst_pod][random.randint(0, 3)]
-        graph.add_edge(src_node,dst_node)
+        while dst_pod == src_pod:
+            dst_pod = random.randint(0, len(cores))
+        # if no more ports left for that pod
+        if not aval_ports_p_core[src_pod]:
+            cores.remove(src_pod)
+            aval_ports_p_core.remove(src_pod)
+        elif not aval_ports_p_core[dst_pod]:
+            cores.remove(dst_pod)
+            aval_ports_p_core.remove(dst_pod)
+        else :
+            src_node = cores[src_pod][random.randint(0, len(cores[src_pod]))]
+            dst_node = cores[dst_pod][random.randint(0, len(cores[dst_pod]))]
+            while graph.has_edge(src_node,dst_node):
+                dst_node = cores[dst_pod][random.randint(0,len(cores[dst_pod]))]
+            aval_ports_p_core[src_pod] -= 1
+            aval_ports_p_core[dst_pod] -= 1
+            graph.add_edge(src_node,dst_node)
     return graph
 
 
@@ -361,7 +376,8 @@ def main():
             graph = clustered_local_miswire(n, d, size_subgraph, m)
             file_name += "cluster local"
         elif type == "datacenter":
-            graph =
+            graph = datacenter()
+            file_name += "datacenter"
         else:
             graph = generate_jellyfish(n,d)
         networkx.write_adjlist(graph, file_name)
