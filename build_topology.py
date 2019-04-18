@@ -270,8 +270,8 @@ def clustered_local_miswire(n,d,r,m):
 # script ex -> build_topology.py n(int) d(int) type(string) m (float ~ decimal)
 # n - number of nodes
 # d - degree per a node
-# m - percent miswiring of total nodes
 # type - type of miswiring
+# m - percent miswiring of total nodes
 
 def main():
     n = int(sys.argv[1])
