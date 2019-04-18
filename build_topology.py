@@ -131,10 +131,10 @@ def random_derangement(n):
 def generate_jellyfish(n, d):
     graph = networkx.random_regular_graph(d, n)
     while not networkx.is_connected(graph):
-        src = random.randint(0,n)
-        dst = random.randint(0,n)
+        src = random.randint(0,n - 1)
+        dst = random.randint(0,n - 1)
         while dst == src or graph.has_edge(src,dst):
-            dst = random.randint(0,n)
+            dst = random.randint(0,n - 1)
         graph.add_edge(src,dst)
     return graph
     # make sure it's connected
@@ -161,8 +161,8 @@ def global_miswire(n,d,m):
         source = 0
         destination = 0
         while source == destination:
-            source = random.randint(0, n)
-            destination = random.randint(0, n)
+            source = random.randint(0, n - 1)
+            destination = random.randint(0, n - 1)
         graph.add_edge(source, destination)
     return graph
 
@@ -223,7 +223,7 @@ def clustered_global_miswire(n,d,r,m):
         # random node from local list/ cluster
         # add an edge going from this node to a random node in Gsource = local_list[random.randint(0, len(local_list))]
         source = local_list[random.randint(0, len(local_list)-1)]
-        destination = random.randint(0, len(node_list))
+        destination = random.randint(0, len(node_list) - 1)
         graph.add_edge(source, destination)
     return graph
 
@@ -267,6 +267,65 @@ def clustered_local_miswire(n,d,r,m):
 
     return graph
 
+def make_fattree(graph, start_num):
+    # 4 nodes in a core
+    core = [i for i in range(start_num, start_num + 4)]
+    start_num += 4
+    # 8 in agg1
+    agg1 = [i for i in range(start_num, start_num + 8)]
+    start_num += 8
+    # 8 more in agg2
+    agg2 = [i for i in range(start_num,start_num + 8)]
+    start_num += 8
+    # 16 in edge
+    edge = [i for i in range(start_num, start_num + 16)]
+    start_num += 16
+    graph.add_nodes_from(core)
+    graph.add_nodes_from(agg1)
+    graph.add_nodes_from(agg2)
+    graph.add_nodes_from(edge)
+    for i in range(len(agg1)):
+        if i % 2:		# i is odd
+            graph.add_edge(agg1[i], core[2])
+            graph.add_edge(agg1[i], core[3])
+        else:
+            graph.add_edge(agg1[i], core[0])
+            graph.add_edge(agg1[i], core[1])
+
+    for i in range(0, len(agg1), 2):
+        graph.add_edge(agg1[i]  , agg2[i]  )
+        graph.add_edge(agg1[i]  , agg2[i+1])
+        graph.add_edge(agg1[i+1], agg2[i]  )
+        graph.add_edge(agg1[i+1], agg2[i+1])
+
+    for i in range(len(agg2)):
+        graph.add_edge(agg2[i], edge[2*i])
+        graph.add_edge(agg2[i], edge[2*i + 1])
+    return core
+
+def datacenter():
+    graph = networkx.Graph()
+    start_num = 0
+    cores = []
+    while start_num < 1000:
+        cores += [make_fattree(graph,start_num)]
+        start_num += 3
+    # connect the cores using jellyfish
+    while not networkx.is_connected(graph):
+        src_pod = random.randint(0,len(cores))
+        dst_pod = random.randint(0,len(cores))
+        src_node = cores[src_pod][random.randint(0, 3)]
+        dst_node = cores[dst_pod][random.randint(0, 3)]
+        while dst_pod == src_pod or graph.has_edge(src_node,dst_node):
+            dst_pod = random.randint(0,len(cores))
+            dst_node = cores[dst_pod][random.randint(0, 3)]
+        graph.add_edge(src_node,dst_node)
+    return graph
+
+
+
+
+
 # script ex -> build_topology.py n(int) d(int) type(string) m (float ~ decimal)
 # n - number of nodes
 # d - degree per a node
@@ -301,6 +360,8 @@ def main():
         elif type == "cluster local":
             graph = clustered_local_miswire(n, d, size_subgraph, m)
             file_name += "cluster local"
+        elif type == "datacenter":
+            graph =
         else:
             graph = generate_jellyfish(n,d)
         networkx.write_adjlist(graph, file_name)
