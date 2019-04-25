@@ -369,12 +369,12 @@ def main():
         elif type == "global":
             graph = global_miswire(n, d, m)
             file_name += "global"
-        elif type == "cluster global":
+        elif type == "cluster_global":
             graph = clustered_global_miswire(n, d, size_subgraph, m)
-            file_name += "cluster global"
-        elif type == "cluster local":
+            file_name += "cluster_global"
+        elif type == "cluster_local":
             graph = clustered_local_miswire(n, d, size_subgraph, m)
-            file_name += "cluster local"
+            file_name += "cluster_local"
         elif type == "datacenter":
             graph = datacenter()
             file_name += "datacenter"
