@@ -130,14 +130,28 @@ def random_derangement(n):
 
 def generate_jellyfish(n, d):
     graph = networkx.random_regular_graph(d, n)
-    while not networkx.is_connected(graph):
-        src = random.randint(0,n - 1)
-        dst = random.randint(0,n - 1)
-        while dst == src or graph.has_edge(src,dst):
-            dst = random.randint(0,n - 1)
-        graph.add_edge(src,dst)
+    # a list that represents a node and the number of empty ports a node has left.
+    nodes = [[node, networkx.edges(node)] for node in networkx.nodes(graph)]
+    # all ports already used
+    for x in nodes:
+        if len(x[1]) == d:
+            nodes.remove(x)
+    # while nodes list is not empty
+    while len(nodes) != 0:
+        src = random.randint(0, len(nodes) - 1)
+        dst = random.randint(0, len(nodes) - 1)
+        while dst == src or graph.has_edge(nodes[src][0], nodes[dst][0]):
+            dst = random.randint(0, len(nodes) - 1)
+        graph.add_edge(nodes[src][0], nodes[dst][0])
+        # update ports left
+        nodes[src][1] = graph.edges(nodes[src][0])
+        nodes[dst][1] = graph.edges(nodes[dst][0])
+        if len(nodes[src][1]) == d:
+            nodes.pop(src)
+        if len(nodes[dst][1]) == d:
+            nodes.pop(dst)
     return graph
-    # make sure it's connected
+    # should be completely connected
 
 
 # global miswirings
@@ -150,20 +164,28 @@ def global_miswire(n,d,m):
     for i in range(0,new_m):
         edges = [e for e in graph.edges]
         # new_m = int(math.floor(len(edges)*m))
-        # pick random edge and remove it
-        random_edge = edges[random.randint(0, len(edges)-1)]
-        source = random_edge[0]
-        dest = random_edge[1]
-        graph.remove_edge(source, dest)
+        # pick random edge
 
-    for i in range(0,new_m):
-        # randomly add an edge to the graph
-        source = 0
-        destination = 0
-        while source == destination:
-            source = random.randint(0, n - 1)
-            destination = random.randint(0, n - 1)
-        graph.add_edge(source, destination)
+        random_edge_1 = edges[random.randint(0, len(edges)-1)]
+        src_1 = random_edge_1[0]
+        dest_1 = random_edge_1[1]
+        graph.remove_edge(src_1, dest_1)
+
+        edges = [e for e in graph.edges]
+
+        random_edge_2 = edges[random.randint(0, len(edges) - 1)]
+        src_2 = random_edge_2[0]
+        dest_2 = random_edge_2[1]
+
+        # prevent self links
+        if dest_2 != src_1 or dest_1 != src_2:
+            graph.add_edge(src_1, dest_1)
+            continue
+        # swap random edge with another random edge.
+
+        graph.remove_edge(src_2, dest_2)
+        graph.add_edge(src_1, dest_2)
+        graph.add_edge(src_2, dest_1)
     return graph
 
 # local miswirings
@@ -174,6 +196,7 @@ def local_miswire(n,d,m):
     # convert to int
     new_m = int(math.floor(len(edges)*m))
     for i in range(0, new_m):
+        edges = [e for e in graph.edges]
         # pick a random edge in graph
         random_edge = edges[random.randint(0, len(edges)-1)]
         source = random_edge[0]
@@ -182,10 +205,18 @@ def local_miswire(n,d,m):
         neighbors_list = list(networkx.all_neighbors(graph, dest))
         x = random.randint(0, len(neighbors_list)-1)
         rewire = neighbors_list[x]
-
+        rewire_edges = graph.edges(rewire)
+        rewire_edge = rewire_edges[random.randint(0, len(rewire_edges)-1)]
+        if rewire_edge[0] == rewire:
+            rewire_dst = rewire_edge[1]
+        else:
+            rewire_dst = rewire_edge[0]
+        # swap
+        # should never have parellel edges
         graph.remove_edge(source, dest)
         graph.add_edge(source,rewire)
-        edges = [e for e in graph.edges]
+        graph.remove_edge(rewire, rewire_dst)
+        graph.add_edge(rewire_dst, dest)
     return graph
 
 # cluster miswiring
@@ -209,22 +240,31 @@ def clustered_global_miswire(n,d,r,m):
     new_m = int(math.floor(len(edges)* m))
     #copy pasta from global miswirings
     for i in range(0,new_m):
+        # finds a random edge that contains a node in the local list
+        edges = [e for e in graph.edges]
         source = -1
         dest = -1
-        # finds a random edge that contains a node in the local list
         while source not in local_list and dest not in local_list:
             random_edge = edges[random.randint(0, len(edges)-1)]
             source = random_edge[0]
             dest = random_edge[1]
         graph.remove_edge(source, dest)
+
         edges = [e for e in graph.edges]
 
-    for i in range(0,new_m):
-        # random node from local list/ cluster
+        # random node from local list cluster
         # add an edge going from this node to a random node in Gsource = local_list[random.randint(0, len(local_list))]
-        source = local_list[random.randint(0, len(local_list)-1)]
-        destination = random.randint(0, len(node_list) - 1)
-        graph.add_edge(source, destination)
+        source_2 = local_list[random.randint(0, len(local_list)-1)]
+        destination_2 = random.randint(0, len(node_list) - 1)
+
+        if destination_2 != source or dest != source_2:
+            graph.add_edge(source, dest)
+            continue
+
+        # perform swap.
+        graph.remove_edge(source_2, destination_2)
+        graph.add_edge(source, destination_2)
+        graph.add_edge(source_2, dest)
     return graph
 
 # cluster miswiring
@@ -248,6 +288,7 @@ def clustered_local_miswire(n,d,r,m):
     new_m = int(math.floor(len(edges)* m))
     #copy pasta from local miswirings
     for i in range(0,new_m):
+        edges = [e for e in graph.edges]
         source = -1
         dest = -1
         # finds a random edge that contains a node in the local list
@@ -260,10 +301,20 @@ def clustered_local_miswire(n,d,r,m):
         for n in neighbors_iter:
             neighbors_list += [n]
         # pick random node from neighbor list as miswired node
-        rewire = neighbors_list[random.randint(0, len(neighbors_list)-1)]
+        rewire = neighbors_list[random.randint(0, len(neighbors_list) - 1)]
+
+        rewire_edges = graph.edges(rewire)
+        rewire_edge = rewire_edges[random.randint(0, len(rewire_edges) - 1)]
+        if rewire_edge[0] == rewire:
+            rewire_dst = rewire_edge[1]
+        else:
+            rewire_dst = rewire_edge[0]
+        # swap
+        # should never have parellel edges
         graph.remove_edge(source, dest)
         graph.add_edge(source, rewire)
-        edges = [e for e in graph.edges]
+        graph.remove_edge(rewire, rewire_dst)
+        graph.add_edge(rewire_dst, dest)
 
     return graph
 
