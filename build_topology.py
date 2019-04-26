@@ -131,7 +131,7 @@ def random_derangement(n):
 def generate_jellyfish(n, d):
     graph = networkx.random_regular_graph(d, n)
     # a list that represents a node and the number of empty ports a node has left.
-    nodes = [[node, networkx.edges(node)] for node in networkx.nodes(graph)]
+    nodes = [[node, graph.edges(node)] for node in graph.nodes]
     # all ports already used
     for x in nodes:
         if len(x[1]) == d:
