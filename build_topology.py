@@ -380,8 +380,8 @@ def main():
             file_name += "datacenter"
         else:
             graph = generate_jellyfish(n,d)
-        networkx.write_adjlist(graph, file_name)
-        graph = networkx.read_adjlist(file_name)
+        networkx.write_adjlist(graph, "adjlist_files/"+file_name)
+        graph = networkx.read_adjlist("adjlist_files/"+file_name)
 
         print("Computing ECMP paths")
         ecmp_paths = compute_ecmp_paths(graph, n)

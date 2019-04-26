@@ -1,0 +1,100 @@
+39_2 iperf -s &
+71_2 iperf -c 39_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+15_2 iperf -s &
+93_2 iperf -c 15_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+75_2 iperf -s &
+43_2 iperf -c 75_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+91_2 iperf -s &
+82_2 iperf -c 91_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+14_2 iperf -s &
+52_2 iperf -c 14_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+5_2 iperf -s &
+10_2 iperf -c 5_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+58_2 iperf -s &
+70_2 iperf -c 58_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+80_2 iperf -s &
+67_2 iperf -c 80_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+54_2 iperf -s &
+23_2 iperf -c 54_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+73_2 iperf -s &
+74_2 iperf -c 73_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+69_2 iperf -s &
+99_2 iperf -c 69_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+62_2 iperf -s &
+51_2 iperf -c 62_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+94_2 iperf -s &
+89_2 iperf -c 94_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+9_2 iperf -s &
+16_2 iperf -c 9_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+79_2 iperf -s &
+32_2 iperf -c 79_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+98_2 iperf -s &
+86_2 iperf -c 98_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+49_2 iperf -s &
+11_2 iperf -c 49_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+28_2 iperf -s &
+81_2 iperf -c 28_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+78_2 iperf -s &
+27_2 iperf -c 78_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+76_2 iperf -s &
+13_2 iperf -c 76_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+37_2 iperf -s &
+38_2 iperf -c 37_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+30_2 iperf -s &
+60_2 iperf -c 30_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+83_2 iperf -s &
+68_2 iperf -c 83_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+8_2 iperf -s &
+97_2 iperf -c 8_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+61_2 iperf -s &
+92_2 iperf -c 61_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+90_2 iperf -s &
+18_2 iperf -c 90_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+42_2 iperf -s &
+59_2 iperf -c 42_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+34_2 iperf -s &
+87_2 iperf -c 34_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+40_2 iperf -s &
+48_2 iperf -c 40_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+66_2 iperf -s &
+53_2 iperf -c 66_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+95_2 iperf -s &
+44_2 iperf -c 95_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+33_2 iperf -s &
+46_2 iperf -c 33_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+55_2 iperf -s &
+25_2 iperf -c 55_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+41_2 iperf -s &
+20_2 iperf -c 41_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+6_2 iperf -s &
+2_2 iperf -c 6_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+12_2 iperf -s &
+88_2 iperf -c 12_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+1_2 iperf -s &
+21_2 iperf -c 1_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+57_2 iperf -s &
+4_2 iperf -c 57_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+26_2 iperf -s &
+85_2 iperf -c 26_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+17_2 iperf -s &
+50_2 iperf -c 17_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+31_2 iperf -s &
+35_2 iperf -c 31_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+22_2 iperf -s &
+29_2 iperf -c 22_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+36_2 iperf -s &
+63_2 iperf -c 36_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+56_2 iperf -s &
+19_2 iperf -c 56_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+3_2 iperf -s &
+64_2 iperf -c 3_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+7_2 iperf -s &
+72_2 iperf -c 7_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+47_2 iperf -s &
+24_2 iperf -c 47_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+65_2 iperf -s &
+0_2 iperf -c 65_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+84_2 iperf -s &
+96_2 iperf -c 84_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
+45_2 iperf -s &
+77_2 iperf -c 45_2 -P 8 -t 60 >> results/mn_script_ecmp_8_cluster_global05_15-100_results &
