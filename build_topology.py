@@ -129,31 +129,17 @@ def random_derangement(n):
 
 
 def generate_jellyfish(n, d):
+    d = Math.Floor(0.95*d)
     graph = networkx.random_regular_graph(d, n)
     # a list that represents a node and the number of empty ports a node has left.
-    nodes = [[node, graph.edges(node)] for node in graph.nodes]
-    # all ports already used
-    for x in range(0, len(nodes)):
-        if len(nodes[x][1]) == d:
-            nodes.pop(x)
-
     # while nodes list is not empty
-    while len(nodes) > 0:
+    while not networkx.is_connected(graph):
         src = random.randint(0, len(nodes) - 1)
         dst = random.randint(0, len(nodes) - 1)
 
-        while dst == src or graph.has_edge(nodes[src][0], nodes[dst][0]):
+        while dst == src:
             dst = random.randint(0, len(nodes) - 1)
-
-        graph.add_edge(nodes[src][0], nodes[dst][0])
-        # update ports left
-        nodes[src][1] = graph.edges(nodes[src][0])
-        nodes[dst][1] = graph.edges(nodes[dst][0])
-        if len(nodes[src][1]) == d:
-            nodes.pop(src)
-        if len(nodes[dst][1]) == d:
-            nodes.pop(dst)
-
+        graph.add_edge(src, dst)
     return graph
     # should be completely connected
 
