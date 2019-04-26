@@ -129,7 +129,7 @@ def random_derangement(n):
 
 
 def generate_jellyfish(n, d):
-    d = Math.Floor(0.95*d)
+    d = int(math.floor(0.95*d))
     graph = networkx.random_regular_graph(d, n)
     # a list that represents a node and the number of empty ports a node has left.
     # while nodes list is not empty
