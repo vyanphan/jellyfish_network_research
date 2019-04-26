@@ -137,11 +137,13 @@ def generate_jellyfish(n, d):
         if len(x[1]) == d:
             nodes.remove(x)
     # while nodes list is not empty
-    while len(nodes) != 0:
+    while len(nodes) > 0:
         src = random.randint(0, len(nodes) - 1)
         dst = random.randint(0, len(nodes) - 1)
+
         while dst == src or graph.has_edge(nodes[src][0], nodes[dst][0]):
             dst = random.randint(0, len(nodes) - 1)
+
         graph.add_edge(nodes[src][0], nodes[dst][0])
         # update ports left
         nodes[src][1] = graph.edges(nodes[src][0])
@@ -150,6 +152,7 @@ def generate_jellyfish(n, d):
             nodes.pop(src)
         if len(nodes[dst][1]) == d:
             nodes.pop(dst)
+            
     return graph
     # should be completely connected
 
@@ -248,6 +251,7 @@ def clustered_global_miswire(n,d,r,m):
             random_edge = edges[random.randint(0, len(edges)-1)]
             source = random_edge[0]
             dest = random_edge[1]
+
         graph.remove_edge(source, dest)
 
         edges = [e for e in graph.edges]
