@@ -133,9 +133,10 @@ def generate_jellyfish(n, d):
     # a list that represents a node and the number of empty ports a node has left.
     nodes = [[node, graph.edges(node)] for node in graph.nodes]
     # all ports already used
-    for x in nodes:
-        if len(x[1]) == d:
-            nodes.remove(x)
+    for x in range(0, len(nodes)):
+        if nodes[x][1] == d:
+            nodes.pop(x)
+
     # while nodes list is not empty
     while len(nodes) > 0:
         src = random.randint(0, len(nodes) - 1)
@@ -152,7 +153,7 @@ def generate_jellyfish(n, d):
             nodes.pop(src)
         if len(nodes[dst][1]) == d:
             nodes.pop(dst)
-            
+
     return graph
     # should be completely connected
 
