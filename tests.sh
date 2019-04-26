@@ -13,6 +13,6 @@ formats=(
 )
 for i in "${formats[@]}"; do
 	for j in "${miswire_percentages[@]}"; do
-    	python build_topology.py 1000 20 $i $j
+    	python build_topology.py 100 15 $i $j
 	done
 done
