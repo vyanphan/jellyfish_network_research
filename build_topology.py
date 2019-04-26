@@ -341,41 +341,41 @@ def datacenter():
 
 
 
-# script ex -> build_topology.py n(int) d(int) type(string) m (float ~ decimal)
+# script ex -> build_topology.py n(int) d(int) t(string) m(float ~ decimal)
 # n - number of nodes
 # d - degree per a node
-# type - type of miswiring
+# t - type of miswiring
 # m - percent miswiring of total nodes
 
 def main():
     n = int(sys.argv[1])
     numHosts = int(3*n)
     d = int(sys.argv[2])
-    type = str(sys.argv[3])
-    
+    t = str(sys.argv[3])
+
     # percent miswirings in decimal form
     m = float(sys.argv[4])
     reuse_old_result = False
     ecmp_paths = {}
     all_ksp = {}
-    file_name = "rrg_%s_%s_" % (d, n)
+    file_name = "rrg_%s_%s_%s_" % (d, n, str(m)[2:])
 
     # constant ~ possible number of miswirings in a local setting
     size_subgraph = 10
     if not reuse_old_result:
-        if type == "local":
+        if t == "local":
             graph = local_miswire(n, d, m)
             file_name += "local"
-        elif type == "global":
+        elif t == "global":
             graph = global_miswire(n, d, m)
             file_name += "global"
-        elif type == "cluster_global":
+        elif t == "cluster_global":
             graph = clustered_global_miswire(n, d, size_subgraph, m)
             file_name += "cluster_global"
-        elif type == "cluster_local":
+        elif t == "cluster_local":
             graph = clustered_local_miswire(n, d, size_subgraph, m)
             file_name += "cluster_local"
-        elif type == "datacenter":
+        elif t == "datacenter":
             graph = datacenter()
             file_name += "datacenter"
         else:
