@@ -134,7 +134,7 @@ def generate_jellyfish(n, d):
     nodes = [[node, graph.edges(node)] for node in graph.nodes]
     # all ports already used
     for x in range(0, len(nodes)):
-        if nodes[x][1] == d:
+        if len(nodes[x][1]) == d:
             nodes.pop(x)
 
     # while nodes list is not empty
