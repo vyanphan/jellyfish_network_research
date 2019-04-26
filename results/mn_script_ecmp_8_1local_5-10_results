@@ -134,3 +134,73 @@ TCP window size: 85.3 KByte (default)
 [  7] local 10.0.8.2 port 57578 connected with 10.0.9.2 port 5001
 [  8] local 10.0.8.2 port 57580 connected with 10.0.9.2 port 5001
 [  9] local 10.0.8.2 port 57582 connected with 10.0.9.2 port 5001
+------------------------------------------------------------
+Client connecting to 10.0.7.2, TCP port 5001
+TCP window size: 85.3 KByte (default)
+------------------------------------------------------------
+------------------------------------------------------------
+Client connecting to 10.0.3.2, TCP port 5001
+TCP window size: 85.3 KByte (default)
+------------------------------------------------------------
+[ 10] local 10.0.4.2 port 55486 connected with 10.0.3.2 port 5001
+[ 10] local 10.0.5.2 port 44850 connected with 10.0.7.2 port 5001
+[  3] local 10.0.5.2 port 44836 connected with 10.0.7.2 port 5001
+[  4] local 10.0.5.2 port 44838 connected with 10.0.7.2 port 5001
+[  5] local 10.0.5.2 port 44840 connected with 10.0.7.2 port 5001
+[  6] local 10.0.5.2 port 44842 connected with 10.0.7.2 port 5001
+[  7] local 10.0.5.2 port 44844 connected with 10.0.7.2 port 5001
+[  8] local 10.0.5.2 port 44846 connected with 10.0.7.2 port 5001
+[  9] local 10.0.5.2 port 44848 connected with 10.0.7.2 port 5001
+[  5] local 10.0.4.2 port 55476 connected with 10.0.3.2 port 5001
+[  9] local 10.0.4.2 port 55484 connected with 10.0.3.2 port 5001
+[  8] local 10.0.4.2 port 55482 connected with 10.0.3.2 port 5001
+[  4] local 10.0.4.2 port 55474 connected with 10.0.3.2 port 5001
+[  6] local 10.0.4.2 port 55478 connected with 10.0.3.2 port 5001
+[  7] local 10.0.4.2 port 55480 connected with 10.0.3.2 port 5001
+[  3] local 10.0.4.2 port 55472 connected with 10.0.3.2 port 5001
+------------------------------------------------------------
+Client connecting to 10.0.6.2, TCP port 5001
+TCP window size: 85.3 KByte (default)
+------------------------------------------------------------
+[ 10] local 10.0.1.2 port 37044 connected with 10.0.6.2 port 5001
+[  3] local 10.0.1.2 port 37030 connected with 10.0.6.2 port 5001
+[  4] local 10.0.1.2 port 37032 connected with 10.0.6.2 port 5001
+[  5] local 10.0.1.2 port 37034 connected with 10.0.6.2 port 5001
+[  6] local 10.0.1.2 port 37036 connected with 10.0.6.2 port 5001
+[  7] local 10.0.1.2 port 37038 connected with 10.0.6.2 port 5001
+[  8] local 10.0.1.2 port 37040 connected with 10.0.6.2 port 5001
+[  9] local 10.0.1.2 port 37042 connected with 10.0.6.2 port 5001
+------------------------------------------------------------
+Client connecting to 10.0.0.2, TCP port 5001
+TCP window size: 85.3 KByte (default)
+------------------------------------------------------------
+[ ID] Interval       Transfer     Bandwidth
+[ 10]  0.0- 0.1 sec  82.0 KBytes  12.0 Mbits/sec
+[ 10] local 10.0.2.2 port 32988 connected with 10.0.0.2 port 5001
+[  3] local 10.0.2.2 port 32974 connected with 10.0.0.2 port 5001
+[  4] local 10.0.2.2 port 32976 connected with 10.0.0.2 port 5001
+[  5] local 10.0.2.2 port 32978 connected with 10.0.0.2 port 5001
+[  6] local 10.0.2.2 port 32980 connected with 10.0.0.2 port 5001
+[  7] local 10.0.2.2 port 32982 connected with 10.0.0.2 port 5001
+[  8] local 10.0.2.2 port 32984 connected with 10.0.0.2 port 5001
+[  9] local 10.0.2.2 port 32986 connected with 10.0.0.2 port 5001
+[ ID] Interval       Transfer     Bandwidth
+[ 10]  0.0- 0.1 sec  82.0 KBytes  11.8 Mbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[ 10]  0.0- 0.0 sec  82.0 KBytes   175 Mbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[ 10]  0.0- 0.1 sec  82.0 KBytes  12.4 Mbits/sec
+------------------------------------------------------------
+Client connecting to 10.0.9.2, TCP port 5001
+TCP window size: 85.3 KByte (default)
+------------------------------------------------------------
+[ 10] local 10.0.8.2 port 57728 connected with 10.0.9.2 port 5001
+[  3] local 10.0.8.2 port 57714 connected with 10.0.9.2 port 5001
+[  4] local 10.0.8.2 port 57716 connected with 10.0.9.2 port 5001
+[  5] local 10.0.8.2 port 57718 connected with 10.0.9.2 port 5001
+[  6] local 10.0.8.2 port 57720 connected with 10.0.9.2 port 5001
+[  7] local 10.0.8.2 port 57722 connected with 10.0.9.2 port 5001
+[  8] local 10.0.8.2 port 57724 connected with 10.0.9.2 port 5001
+[  9] local 10.0.8.2 port 57726 connected with 10.0.9.2 port 5001
+[ ID] Interval       Transfer     Bandwidth
+[ 10]  0.0- 0.0 sec  82.0 KBytes   132 Mbits/sec
