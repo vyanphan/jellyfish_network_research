@@ -1,0 +1,100 @@
+89_2 iperf -s &
+69_2 iperf -c 89_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+24_2 iperf -s &
+74_2 iperf -c 24_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+79_2 iperf -s &
+80_2 iperf -c 79_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+1_2 iperf -s &
+44_2 iperf -c 1_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+91_2 iperf -s &
+6_2 iperf -c 91_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+11_2 iperf -s &
+71_2 iperf -c 11_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+33_2 iperf -s &
+10_2 iperf -c 33_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+88_2 iperf -s &
+66_2 iperf -c 88_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+56_2 iperf -s &
+7_2 iperf -c 56_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+0_2 iperf -s &
+23_2 iperf -c 0_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+77_2 iperf -s &
+39_2 iperf -c 77_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+67_2 iperf -s &
+92_2 iperf -c 67_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+65_2 iperf -s &
+16_2 iperf -c 65_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+49_2 iperf -s &
+15_2 iperf -c 49_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+85_2 iperf -s &
+82_2 iperf -c 85_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+75_2 iperf -s &
+98_2 iperf -c 75_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+36_2 iperf -s &
+34_2 iperf -c 36_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+18_2 iperf -s &
+5_2 iperf -c 18_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+30_2 iperf -s &
+93_2 iperf -c 30_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+94_2 iperf -s &
+40_2 iperf -c 94_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+73_2 iperf -s &
+2_2 iperf -c 73_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+21_2 iperf -s &
+84_2 iperf -c 21_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+61_2 iperf -s &
+54_2 iperf -c 61_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+35_2 iperf -s &
+8_2 iperf -c 35_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+38_2 iperf -s &
+55_2 iperf -c 38_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+57_2 iperf -s &
+31_2 iperf -c 57_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+48_2 iperf -s &
+60_2 iperf -c 48_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+3_2 iperf -s &
+26_2 iperf -c 3_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+43_2 iperf -s &
+62_2 iperf -c 43_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+90_2 iperf -s &
+32_2 iperf -c 90_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+68_2 iperf -s &
+63_2 iperf -c 68_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+47_2 iperf -s &
+50_2 iperf -c 47_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+99_2 iperf -s &
+14_2 iperf -c 99_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+45_2 iperf -s &
+81_2 iperf -c 45_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+9_2 iperf -s &
+76_2 iperf -c 9_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+4_2 iperf -s &
+19_2 iperf -c 4_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+28_2 iperf -s &
+51_2 iperf -c 28_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+46_2 iperf -s &
+12_2 iperf -c 46_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+29_2 iperf -s &
+96_2 iperf -c 29_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+59_2 iperf -s &
+83_2 iperf -c 59_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+25_2 iperf -s &
+70_2 iperf -c 25_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+20_2 iperf -s &
+86_2 iperf -c 20_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+52_2 iperf -s &
+22_2 iperf -c 52_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+95_2 iperf -s &
+53_2 iperf -c 95_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+58_2 iperf -s &
+87_2 iperf -c 58_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+17_2 iperf -s &
+37_2 iperf -c 17_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+41_2 iperf -s &
+72_2 iperf -c 41_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+97_2 iperf -s &
+42_2 iperf -c 97_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+64_2 iperf -s &
+27_2 iperf -c 64_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
+78_2 iperf -s &
+13_2 iperf -c 78_2 -P 8 -t 60 >> results/mn_script_ecmp_8_local01_15-100_results &
