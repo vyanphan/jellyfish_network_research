@@ -38,11 +38,11 @@ source mn_script_ecmp_8_local1_15-100_flow
 # sudo mn --custom ripl/ripl/mn.py --topo jelly,100,15,adjlist_files/rrg_15_100_01_cluster_global --link tc --controller=remote --mac
 # source mn_script_ecmp_8_cluster_global01_15-100_flow
 
-pox/pox.py riplpox.riplpox --topo=jelly,100,15,adjlist_files/rrg_15_100_05_cluster_global --routing=jelly,ecmp_8_rrg_15_100_05_cluster_global --mode=reactive
-sudo mn --custom ripl/ripl/mn.py --topo jelly,100,15,adjlist_files/rrg_15_100_05_cluster_global --link tc --controller=remote --mac
-source mn_script_ecmp_8_cluster_global05_15-100_flow
+# pox/pox.py riplpox.riplpox --topo=jelly,100,15,adjlist_files/rrg_15_100_05_cluster_global --routing=jelly,ecmp_8_rrg_15_100_05_cluster_global --mode=reactive
+# sudo mn --custom ripl/ripl/mn.py --topo jelly,100,15,adjlist_files/rrg_15_100_05_cluster_global --link tc --controller=remote --mac
+# source mn_script_ecmp_8_cluster_global05_15-100_flow
 
-pox/pox.py riplpox.riplpox --topo=jelly,100,15,adjlist_files/rrg_15_100_1_cluster_global --routing=jelly,ecmp_8_rrg_15_100_1_cluster_global --mode=reactive
-sudo mn --custom ripl/ripl/mn.py --topo jelly,100,15,adjlist_files/rrg_15_100_1_cluster_global --link tc --controller=remote --mac
-source mn_script_ecmp_8_cluster_global1_15-100_flow
+# pox/pox.py riplpox.riplpox --topo=jelly,100,15,adjlist_files/rrg_15_100_1_cluster_global --routing=jelly,ecmp_8_rrg_15_100_1_cluster_global --mode=reactive
+# sudo mn --custom ripl/ripl/mn.py --topo jelly,100,15,adjlist_files/rrg_15_100_1_cluster_global --link tc --controller=remote --mac
+# source mn_script_ecmp_8_cluster_global1_15-100_flow
 
