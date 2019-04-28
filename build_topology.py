@@ -351,28 +351,28 @@ def datacenter():
     ports_p_pod = 20
     while start_num < 1000:
         cores += [make_fattree(graph,start_num)]
-        start_num += 3
+        start_num += 36
     # connect the cores using jellyfish
     aval_ports_p_core = [ports_p_pod for i in range(len(cores))]
     # while there is still more than 1 pod left
     while not len(aval_ports_p_core) <= 1:
         # pick random pods
-        src_pod = random.randint(0,len(cores))
-        dst_pod = random.randint(0,len(cores))
+        src_pod = random.randint(0,len(cores) - 1)
+        dst_pod = random.randint(0,len(cores) - 1)
         while dst_pod == src_pod:
-            dst_pod = random.randint(0, len(cores))
+            dst_pod = random.randint(0, len(cores) - 1)
         # if no more ports left for that pod
-        if not aval_ports_p_core[src_pod]:
-            cores.remove(src_pod)
-            aval_ports_p_core.remove(src_pod)
-        elif not aval_ports_p_core[dst_pod]:
-            cores.remove(dst_pod)
-            aval_ports_p_core.remove(dst_pod)
+        if aval_ports_p_core[src_pod] == 0:
+            cores.pop(src_pod)
+            aval_ports_p_core.pop(src_pod)
+        elif aval_ports_p_core[dst_pod] == 0:
+            cores.pop(dst_pod)
+            aval_ports_p_core.pop(dst_pod)
         else :
-            src_node = cores[src_pod][random.randint(0, len(cores[src_pod]))]
-            dst_node = cores[dst_pod][random.randint(0, len(cores[dst_pod]))]
+            src_node = cores[src_pod][random.randint(0, len(cores[src_pod]) - 1)]
+            dst_node = cores[dst_pod][random.randint(0, len(cores[dst_pod]) - 1)]
             while graph.has_edge(src_node,dst_node):
-                dst_node = cores[dst_pod][random.randint(0,len(cores[dst_pod]))]
+                dst_node = cores[dst_pod][random.randint(0,len(cores[dst_pod]) - 1)]
             aval_ports_p_core[src_pod] -= 1
             aval_ports_p_core[dst_pod] -= 1
             graph.add_edge(src_node,dst_node)
@@ -382,7 +382,7 @@ def datacenter():
 
 
 
-# script ex -> build_topology.py n(int) d(int) t(string) m(float ~ decimal)
+    # script ex -> build_topology.py n(int) d(int) t(string) m(float ~ decimal)
 # n - number of nodes
 # d - degree per a node
 # t - type of miswiring
