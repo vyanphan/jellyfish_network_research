@@ -1,0 +1,22 @@
+------------------------------------------------------------
+Client connecting to 10.0.18.2, TCP port 5001
+TCP window size: 85.3 KByte (default)
+------------------------------------------------------------
+[ 10] local 10.0.44.2 port 33384 connected with 10.0.18.2 port 5001
+[  3] local 10.0.44.2 port 33370 connected with 10.0.18.2 port 5001
+[  4] local 10.0.44.2 port 33372 connected with 10.0.18.2 port 5001
+[  5] local 10.0.44.2 port 33374 connected with 10.0.18.2 port 5001
+[  6] local 10.0.44.2 port 33376 connected with 10.0.18.2 port 5001
+[  7] local 10.0.44.2 port 33378 connected with 10.0.18.2 port 5001
+[  9] local 10.0.44.2 port 33382 connected with 10.0.18.2 port 5001
+[  8] local 10.0.44.2 port 33380 connected with 10.0.18.2 port 5001
+[ ID] Interval       Transfer     Bandwidth
+[ 10]  0.0- 0.4 sec  82.0 KBytes  1.64 Mbits/sec
+[  4]  0.0-66.1 sec  1.21 MBytes   154 Kbits/sec
+[  6]  0.0-66.2 sec  1.15 MBytes   146 Kbits/sec
+[  9]  0.0-66.1 sec  1.21 MBytes   154 Kbits/sec
+[  3]  0.0-68.2 sec  1.17 MBytes   144 Kbits/sec
+[  5]  0.0-68.1 sec  1.17 MBytes   144 Kbits/sec
+[  7]  0.0-68.2 sec  1.17 MBytes   144 Kbits/sec
+[  8]  0.0-68.3 sec  1.16 MBytes   143 Kbits/sec
+[SUM]  0.0-68.3 sec  8.32 MBytes  1.02 Mbits/sec
